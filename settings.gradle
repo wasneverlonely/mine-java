@@ -1,0 +1,3 @@
+include ':mine'
+include ':app'
+rootProject.name = "MineJava"
