@@ -17,6 +17,8 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void initViewModel() {
         mLoginModel = new LoginViewModel();
+        mLoginModel.userName.set("18514232635");
+        mLoginModel.password.set("123456");
     }
 
     @Override
@@ -34,7 +36,7 @@ public class LoginActivity extends BaseActivity {
             Log.e(TAG, "login: " + userName + password);
 
             if (!ValidateUtils.checkPhoneNumber(userName) ||
-                    !ValidateUtils.checkPhoneNumber(password)) {
+                    !ValidateUtils.checkPassword(password, 6)) {
                 return;
             }
 
