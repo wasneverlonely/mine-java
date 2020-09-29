@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.was.minejava.ui.refresh.RefreshViewModel" />
+
+        <variable
+            name="click"
+            type="com.was.minejava.ui.refresh.RefreshActivity.ClickProxy" />
+
+        <variable
+            name="adapter"
+            type="androidx.recyclerview.widget.ListAdapter" />
+
+        <variable
+            name="refreshListener"
+            type="androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.refresh.RefreshActivity">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/srhLayout"
+            setRefreshListener="@{refreshListener}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cl_white">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:text="wowon"
+                textColor="#000000"
+                />
+
+            <!--            <androidx.recyclerview.widget.RecyclerView-->
+            <!--                android:id="@+id/recyclerView"-->
+            <!--                adapter="@{adapter}"-->
+            <!--                submitList="@{vm.list}"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:clipToPadding="false"-->
+            <!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+            <!--                tools:listitem="@layout/item_list" />-->
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+</layout>
