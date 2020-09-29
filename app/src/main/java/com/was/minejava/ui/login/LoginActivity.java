@@ -33,7 +33,6 @@ public class LoginActivity extends BaseActivity {
                 } else {
                     ToastUtils.showShort(state.getMessage());
                 }
-
             }
         });
     }

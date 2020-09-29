@@ -1,6 +1,7 @@
 package com.was.minejava.common;
 
 import com.was.minejava.bean.HttpResult;
+import com.was.minejava.bean.ProvinceBean;
 import com.was.minejava.bean.UserBean;
 
 import java.math.BigDecimal;
@@ -39,6 +40,9 @@ public interface Api {
     Observable<HttpResult<UserBean>>
     login(@Field("mobile") String phoneNumber, @Field("password") String password);
 
+
+    @GET("nation/app_qryAllProvince.action")
+    Observable<HttpResult<List<ProvinceBean>>> lookProvince();
 }
 
 
