@@ -26,6 +26,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.kunminx.architecture.ui.page.DataBindingActivity;
+import com.was.core.domain.NetworkStateManager;
 
 
 /**
@@ -44,7 +45,7 @@ public abstract class BaseActivity extends DataBindingActivity {
         super.onCreate(savedInstanceState);
 
         // 监听生命activity的生命周期
-//        getLifecycle().addObserver(NetworkStateManager.getInstance());
+        getLifecycle().addObserver(NetworkStateManager.getInstance());
     }
 
     protected <T extends ViewModel> T getActivityViewModel(@NonNull Class<T> modelClass) {

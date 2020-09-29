@@ -26,7 +26,7 @@ import rx.schedulers.Schedulers;
  * <p>
  * 网络请求工具类  所有的网络请求调用这个里面的工具类
  */
-public class HttpUtils {
+public class HttpHelper {
 
     public static final MediaType MULTIPART_FORM_DATA = MediaType.parse("multipart/form-data;charset=utf-8");
     public static final MediaType APPLICATION_URLENCODED = MediaType.parse("application/x-www-form-urlencoded;charset=utf-8");
@@ -51,16 +51,16 @@ public class HttpUtils {
 
     //在访问HttpMethods时创建单例
     private static class SingletonHolder {
-        private static final HttpUtils INSTANCE = new HttpUtils();
+        private static final HttpHelper INSTANCE = new HttpHelper();
     }
 
     //获取单例
-    public static HttpUtils getInstance() {
+    public static HttpHelper getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
     //构造方法私有
-    private HttpUtils() {
+    private HttpHelper() {
         initRetrofit();
     }
 
@@ -89,31 +89,31 @@ public class HttpUtils {
     /**
      * 原始   toSunscribe
      *
-     * @param o
-     * @param s
+     * @param observable
+     * @param subscriber
      * @param <T>
      */
-    public static <T> void originalToSubscribe(Observable<T> o, Subscriber<T> s) {
-        o.subscribeOn(Schedulers.io())
+    public static <T> void originalToSubscribe(Observable<T> observable, Subscriber<T> subscriber) {
+        observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(s);
+                .subscribe(subscriber);
     }
 
 
     /**
      * 判断 code返回数据
      *
-     * @param o
-     * @param s
+     * @param observable
+     * @param subscriber
      */
-    public static <T> void toSubscribe(Observable<HttpResult<T>> o, Subscriber<T> s) {
-        if (o == null) {
+    public static <T> void toSubscribe(Observable<HttpResult<T>> observable, Subscriber<T> subscriber) {
+        if (observable == null) {
             return;
         }
 
-        Observable<T> map = o.map(new HttpResultFunc<T>());
-        originalToSubscribe(map, s);
+        Observable<T> map = observable.map(new HttpResultFunc<T>());
+        originalToSubscribe(map, subscriber);
     }
 
 

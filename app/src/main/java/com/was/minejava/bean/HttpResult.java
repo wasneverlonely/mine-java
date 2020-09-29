@@ -8,7 +8,6 @@ package com.was.minejava.bean;
  */
 public class HttpResult<T> {
 
-
     private int code;
     private String msg;
     private T content;

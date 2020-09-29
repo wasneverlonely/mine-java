@@ -1,23 +1,26 @@
 package com.was.minejava;
 
-import android.app.Application;
+import android.content.Context;
 
-import androidx.multidex.MultiDexApplication;
+import androidx.multidex.MultiDex;
 
+import com.kunminx.architecture.BaseApplication;
+import com.was.core.utils.AppUtils;
 import com.was.core.utils.ToastUtils;
+import com.was.core.utils.Utils;
 
-public class App extends MultiDexApplication {
+public class App extends BaseApplication {
 
-    static Application app;
-
-    public static Application getApp() {
-        return app;
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        app = this;
+        AppUtils.init(this);
         ToastUtils.register(getApplicationContext());
     }
 }

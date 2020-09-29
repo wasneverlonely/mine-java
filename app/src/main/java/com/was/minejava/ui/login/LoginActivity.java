@@ -3,11 +3,16 @@ package com.was.minejava.ui.login;
 
 import android.util.Log;
 
+import androidx.lifecycle.Observer;
+
 import com.kunminx.architecture.ui.page.DataBindingConfig;
+import com.was.core.common.http.NetState;
 import com.was.core.ui.BaseActivity;
+import com.was.core.utils.ToastUtils;
 import com.was.core.utils.ValidateUtils;
 import com.was.minejava.BR;
 import com.was.minejava.R;
+import com.was.minejava.bean.UserBean;
 
 
 public class LoginActivity extends BaseActivity {
@@ -19,6 +24,18 @@ public class LoginActivity extends BaseActivity {
         mLoginModel = new LoginViewModel();
         mLoginModel.userName.set("18514232635");
         mLoginModel.password.set("123456");
+
+        mLoginModel.loginRequest.getUser().observe(this, new Observer<NetState<UserBean>>() {
+            @Override
+            public void onChanged(NetState<UserBean> state) {
+                if (state.isSuccess()) {
+                    ToastUtils.showShort("" + state.getData().getId());
+                } else {
+                    ToastUtils.showShort(state.getMessage());
+                }
+
+            }
+        });
     }
 
     @Override
@@ -41,7 +58,6 @@ public class LoginActivity extends BaseActivity {
             }
 
             mLoginModel.loginRequest.login(userName, password);
-//            mLoginModel.loginRequest.
         }
     }
 }
