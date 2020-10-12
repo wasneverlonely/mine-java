@@ -14,29 +14,94 @@
  * limitations under the License.
  */
 
-package com.was.core.ui;
+package com.was.minejava.base;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.kunminx.architecture.ui.page.DataBindingActivity;
 import com.was.core.domain.NetworkStateManager;
+import com.was.core.ui.BaseToolActivity;
+import com.was.minejava.R;
 
 
 /**
  * Create by KunMinX at 19/8/1
  */
-public abstract class BaseActivity extends DataBindingActivity {
+public abstract class BaseActivity extends BaseToolActivity {
 
     public final String TAG = "tag";
+
+    /**
+     * 返回
+     */
+    protected void setBack() {
+        this.setBack((v) -> {
+            onBackPressed();
+        });
+    }
+
+    /**
+     * 设置返回
+     *
+     * @param click
+     */
+    protected void setBack(View.OnClickListener click) {
+        super.setBack(R.id.iv_common_back, click);
+    }
+
+    /**
+     * 设置标题
+     *
+     * @param textRcesID
+     */
+    protected void setTitleText(int textRcesID) {
+        String title = getResources().getString(textRcesID);
+        this.setTitleText(title);
+    }
+
+    /**
+     * 设置中间字体
+     *
+     * @param title
+     */
+    protected void setTitleText(CharSequence title) {
+        super.setTitleText(R.id.tv_common_title, title);
+    }
+
+    /**
+     * 设置右边的字体
+     *
+     * @param rightText
+     * @param click
+     */
+    protected void setTitleRightText(String rightText, View.OnClickListener click) {
+        super.setTitleRightText(R.id.tv_common_right, rightText, click);
+    }
+
+    /**
+     * 设置右边图片
+     *
+     * @param iconResID
+     * @param click
+     */
+    protected void setTitleRightIcon(int iconResID, View.OnClickListener click) {
+        super.setTitleRightIcon(R.id.iv_common_right, iconResID, click);
+    }
+
+    /**
+     * 设置次级右边图片
+     *
+     * @param iconResID
+     * @param click
+     */
+    protected void setTitleSecondRightIcon(int iconResID, View.OnClickListener click) {
+        super.setTitleSecondRightIcon(R.id.iv_common_second_right, iconResID, click);
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,13 +115,6 @@ public abstract class BaseActivity extends DataBindingActivity {
         getLifecycle().addObserver(NetworkStateManager.getInstance());
     }
 
-    protected <T extends ViewModel> T getActivityViewModel(@NonNull Class<T> modelClass) {
-        return super.getActivityViewModel(modelClass);
-    }
-
-    protected ViewModelProvider getAppViewModelProvider() {
-        return super.getAppViewModelProvider();
-    }
 
 //    @Override
 //    public Resources getResources() {
@@ -66,45 +124,6 @@ public abstract class BaseActivity extends DataBindingActivity {
 //            return AdaptScreenUtils.adaptHeight(super.getResources(), 640);
 //        }
 //    }
-
-    private ProgressDialog pd;
-
-    public void showProgressDialog() {
-        showProgressDialog(false);
-    }
-
-    public void showProgressDialog(boolean cancelable) {
-        if (pd == null) {
-            pd = new ProgressDialog(this);
-            pd.setCancelable(cancelable);
-            pd.setMessage("正在拼命加载中~");
-
-            if (cancelable) {
-                pd.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        dialog.dismiss();
-                    }
-                });
-            }
-        }
-
-        try {
-            if (!pd.isShowing()) {
-                pd.show();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void dismissProgressDialog() {
-        if (pd != null) {
-            pd.dismiss();
-            pd = null;
-        }
-    }
-
 
     protected void toggleSoftInput() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);

@@ -5,7 +5,7 @@ import androidx.lifecycle.Observer;
 
 import com.kunminx.architecture.ui.page.DataBindingConfig;
 import com.was.core.common.http.NetState;
-import com.was.core.ui.BaseActivity;
+import com.was.minejava.base.BaseActivity;
 import com.was.core.utils.ToastUtils;
 import com.was.minejava.BR;
 import com.was.minejava.R;

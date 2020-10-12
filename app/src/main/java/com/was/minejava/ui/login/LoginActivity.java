@@ -4,7 +4,7 @@ package com.was.minejava.ui.login;
 import android.util.Log;
 
 import com.kunminx.architecture.ui.page.DataBindingConfig;
-import com.was.core.ui.BaseActivity;
+import com.was.minejava.base.BaseActivity;
 import com.was.core.utils.ToastUtils;
 import com.was.core.utils.ValidateUtils;
 import com.was.minejava.BR;
@@ -32,7 +32,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected DataBindingConfig getDataBindingConfig() {
-        return new DataBindingConfig(R.layout.activity_login, BR.vm, mLoginModel)
+        return new DataBindingConfig(R.layout.activity_main, BR.vm, mLoginModel)
                 .addBindingParam(BR.click, new ClickProxy());
     }
 

@@ -1,18 +1,11 @@
 package com.was.minejava.ui.refresh;
 
-import android.view.View;
-
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
-import com.chad.library.adapter.base.listener.OnItemLongClickListener;
 import com.chad.library.adapter.base.listener.OnLoadMoreListener;
 import com.kunminx.architecture.ui.page.DataBindingConfig;
-import com.was.core.ui.BaseActivity;
+import com.was.minejava.base.BaseActivity;
 import com.was.minejava.BR;
 import com.was.minejava.R;
 import com.was.minejava.dapter.ListActivityAdapter;

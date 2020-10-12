@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.was.core.ui;
+package com.was.minejava.base;
 
 import android.app.Activity;
 import android.view.inputmethod.InputMethodManager;
