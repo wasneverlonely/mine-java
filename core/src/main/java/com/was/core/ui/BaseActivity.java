@@ -17,6 +17,8 @@
 package com.was.core.ui;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.inputmethod.InputMethodManager;
 
@@ -64,6 +66,45 @@ public abstract class BaseActivity extends DataBindingActivity {
 //            return AdaptScreenUtils.adaptHeight(super.getResources(), 640);
 //        }
 //    }
+
+    private ProgressDialog pd;
+
+    public void showProgressDialog() {
+        showProgressDialog(false);
+    }
+
+    public void showProgressDialog(boolean cancelable) {
+        if (pd == null) {
+            pd = new ProgressDialog(this);
+            pd.setCancelable(cancelable);
+            pd.setMessage("正在拼命加载中~");
+
+            if (cancelable) {
+                pd.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        dialog.dismiss();
+                    }
+                });
+            }
+        }
+
+        try {
+            if (!pd.isShowing()) {
+                pd.show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void dismissProgressDialog() {
+        if (pd != null) {
+            pd.dismiss();
+            pd = null;
+        }
+    }
+
 
     protected void toggleSoftInput() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);

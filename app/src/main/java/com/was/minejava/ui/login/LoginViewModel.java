@@ -17,6 +17,9 @@ public class LoginViewModel extends ViewModel {
     public final LoginRequest loginRequest = new LoginRequest();
 
     {
+        userName.set("18514232635");
+        password.set("123456");
+
         Log.e("LoginViewModel", "init ---------> ");
     }
 

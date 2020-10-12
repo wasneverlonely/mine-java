@@ -10,8 +10,9 @@ import com.was.minejava.bean.HttpResult;
 import com.was.minejava.bean.UserBean;
 import com.was.minejava.common.HttpHelper;
 
-import rx.Observable;
+import java.util.concurrent.TimeUnit;
 
+import rx.Observable;
 
 public class LoginRequest extends BaseRequest {
 
@@ -28,6 +29,7 @@ public class LoginRequest extends BaseRequest {
 
         Observable<HttpResult<UserBean>> observable = HttpHelper.getApi().login(userName, password);
 
+
         HttpHelper.toSubscribe(observable, new HttpSubscriber<UserBean>() {
 
             @Override
@@ -39,7 +41,6 @@ public class LoginRequest extends BaseRequest {
             public void onFail(Throwable e, NetState netState) {
                 super.onFail(e, netState);
                 user.postValue(netState);
-//                netStateEvent.postValue(netState);
             }
         });
     }
