@@ -110,10 +110,13 @@ public abstract class BaseActivity extends BaseToolActivity {
 //        BarUtils.setStatusBarLightMode(this, true);
 
         super.onCreate(savedInstanceState);
+        initView();
 
         // 监听生命activity的生命周期
         getLifecycle().addObserver(NetworkStateManager.getInstance());
     }
+
+    protected abstract void initView();
 
 
 //    @Override

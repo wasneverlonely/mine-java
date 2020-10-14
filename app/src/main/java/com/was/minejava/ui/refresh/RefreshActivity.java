@@ -8,7 +8,6 @@ import com.kunminx.architecture.ui.page.DataBindingConfig;
 import com.was.minejava.base.BaseActivity;
 import com.was.minejava.BR;
 import com.was.minejava.R;
-import com.was.minejava.dapter.ListActivityAdapter;
 import com.was.minejava.dapter.MyRefreshAdapter;
 
 import java.util.List;
@@ -45,7 +44,7 @@ public class RefreshActivity extends BaseActivity implements OnLoadMoreListener 
 
         return new DataBindingConfig(R.layout.activity_refresh, BR.vm, mRefreshModel)
                 .addBindingParam(BR.click, new ClickProxy())
-                .addBindingParam(BR.adapter, new ListActivityAdapter(this))
+//                .addBindingParam(BR.adapter, new ListActivityAdapter(this))
                 .addBindingParam(BR.refreshListener, new Refresh());
     }
 
@@ -111,6 +110,11 @@ public class RefreshActivity extends BaseActivity implements OnLoadMoreListener 
         //禁止下拉
         mSrhLayout.setEnabled(false);
         requestData(false);
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
 

@@ -21,6 +21,11 @@ public class TabLayoutActivity extends BaseActivity {
                 .addBindingParam(BR.click, new ClickProxy());
     }
 
+    @Override
+    protected void initView() {
+
+    }
+
 
     public class ClickProxy {
         public void click() {

@@ -12,11 +12,10 @@ import com.was.minejava.request.ListRequest;
 
 import java.util.List;
 
-public class ListViewModel extends ViewModel {
+public class CommonListViewModel extends ViewModel {
 
     public final MutableLiveData<List<ProvinceBean>> list = new MutableLiveData<>();
 
-    public final MutableLiveData<Boolean> notifyCurrentListChanged = new MutableLiveData<>();
     public final ListRequest listRequest = new ListRequest();
 
     {

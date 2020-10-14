@@ -16,6 +16,12 @@ public class LoginActivity extends BaseActivity {
     LoginViewModel mLoginModel;
 
     @Override
+    protected void initView() {
+        setBack();
+        setTitleText("登录");
+    }
+
+    @Override
     protected void initViewModel() {
         mLoginModel = new LoginViewModel();
 
@@ -32,7 +38,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected DataBindingConfig getDataBindingConfig() {
-        return new DataBindingConfig(R.layout.activity_main, BR.vm, mLoginModel)
+        return new DataBindingConfig(R.layout.activity_login, BR.vm, mLoginModel)
                 .addBindingParam(BR.click, new ClickProxy());
     }
 

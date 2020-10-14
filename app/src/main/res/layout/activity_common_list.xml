@@ -7,33 +7,42 @@
 
         <variable
             name="vm"
-            type="com.was.minejava.ui.list.ListViewModel" />
+            type="com.was.minejava.ui.list.CommonListViewModel" />
 
         <variable
             name="click"
-            type="com.was.minejava.ui.list.ListActivity.ClickProxy" />
+            type="com.was.minejava.ui.list.CommonListActivity.ClickProxy" />
 
         <variable
             name="adapter"
-            type="androidx.recyclerview.widget.ListAdapter" />
+            type="com.chad.library.adapter.base.BaseQuickAdapter" />
+
+        <variable
+            name="gridLayoutManager"
+            type="androidx.recyclerview.widget.GridLayoutManager" />
+
 
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.list.ListActivity">
+        android:orientation="vertical"
+        tools:context=".ui.list.CommonListActivity">
+
+        <include layout="@layout/common_title" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             adapter="@{adapter}"
-            notifyCurrentListChanged="@{vm.notifyCurrentListChanged}"
-            submitList="@{vm.list}"
+            data="@{vm.list}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_list" />
+            android:clipToPadding="false" />
+        <!--app:layoutManager="@{gridLayoutManager}"-->
+
+        <!--tools:itemCount="5"
+        tools:listitem="@layout/item_list"-->
 
     </LinearLayout>
 </layout>

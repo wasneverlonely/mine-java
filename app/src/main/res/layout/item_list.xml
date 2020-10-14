@@ -9,7 +9,7 @@
     </data>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/dp_200"
         android:layout_height="@dimen/dp_48">
 
         <TextView

@@ -61,7 +61,7 @@ dependencies {
 
     api 'com.kunminx.archi:strict-databinding:3.3.2-beta2'
     api 'com.kunminx.archi:unpeek-livedata:3.2.3-beta10'
-    api 'com.kunminx.archi:binding-recyclerview:3.3.2-beta3'
+//    api 'com.kunminx.archi:binding-recyclerview:3.3.2-beta3'
 
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'//adapter
 
