@@ -2,6 +2,7 @@ package com.was.minejava.common;
 
 import com.was.minejava.bean.HttpResult;
 import com.was.minejava.bean.ProvinceBean;
+import com.was.minejava.bean.SchoolUniformBean;
 import com.was.minejava.bean.UserBean;
 
 import java.math.BigDecimal;
@@ -43,6 +44,12 @@ public interface Api {
 
     @GET("nation/app_qryAllProvince.action")
     Observable<HttpResult<List<ProvinceBean>>> lookProvince();
+
+
+    @GET("schoolUniform/app_qry.action")
+    Observable<HttpResult<List<SchoolUniformBean>>> lookSchoolUniform(@Query("user_id") String userId,
+                                                                      @Query("pageIndex") int pageIndex, @Query("pageSize") int pageSize);
+
 }
 
 

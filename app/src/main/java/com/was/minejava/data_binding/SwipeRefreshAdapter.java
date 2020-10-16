@@ -5,9 +5,16 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class SwipeRefreshAdapter {
 
-    @BindingAdapter(value = {"setRefreshListener"}, requireAll = false)
-    public static void setOnRefreshListener(SwipeRefreshLayout swipeRefreshLayout, SwipeRefreshLayout.OnRefreshListener onRefreshListener) {
+    @BindingAdapter(value = {"refreshing", "isEnabledRefresh", "setRefreshListener"}, requireAll = false)
+    public static void setOnRefreshListener(SwipeRefreshLayout swipeRefreshLayout, boolean refreshing, boolean isEnabledRefresh, SwipeRefreshLayout.OnRefreshListener onRefreshListener) {
 
-        swipeRefreshLayout.setOnRefreshListener(onRefreshListener);
+        if (swipeRefreshLayout != null) {
+
+            swipeRefreshLayout.setRefreshing(refreshing);
+            swipeRefreshLayout.setEnabled(isEnabledRefresh);
+            swipeRefreshLayout.setOnRefreshListener(onRefreshListener);
+        }
     }
+
+
 }

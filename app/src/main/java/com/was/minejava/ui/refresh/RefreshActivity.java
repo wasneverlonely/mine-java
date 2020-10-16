@@ -1,135 +1,60 @@
 package com.was.minejava.ui.refresh;
 
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.chad.library.adapter.base.listener.OnLoadMoreListener;
 import com.kunminx.architecture.ui.page.DataBindingConfig;
-import com.was.minejava.base.BaseActivity;
 import com.was.minejava.BR;
 import com.was.minejava.R;
-import com.was.minejava.dapter.MyRefreshAdapter;
+import com.was.minejava.dapter.RefreshListAdapter;
+import com.was.minejava.ui.BaseRefreshActivity;
 
-import java.util.List;
 
-public class RefreshActivity extends BaseActivity implements OnLoadMoreListener {
+public class RefreshActivity extends BaseRefreshActivity {
 
     RefreshViewModel mRefreshModel;
+    RefreshListAdapter adapter;
 
-    private RecyclerView mRecyclerView;
-    private SwipeRefreshLayout mSrhLayout;
-
-    private int pageSize = 10;// 每页加载的条数
-    private int pageIndex;// 加载下标
-
-    MyRefreshAdapter adapter;
-
-    //页码
-    public int getPageIndex(boolean isRefresh) {
-        return isRefresh ? pageIndex = 1 : ++pageIndex;
-    }
-
-    //获取一页个数
-    public int getPageSize() {
-        return pageSize;
+    @Override
+    protected void initView() {
+        setBack();
+        setTitleText("刷新列表");
     }
 
     @Override
     protected void initViewModel() {
         mRefreshModel = new RefreshViewModel();
+        mRefreshViewModel = mRefreshModel;
+
+        adapter = new RefreshListAdapter();
+        mRefreshAdapter = adapter;
+
+        mRefreshModel.refreshRequest.getData().observe(this, (state) -> {
+            if (state.isSuccess()) {
+                requestSuccess(state.getData(), state.isRefresh());
+            } else {
+                requestFail(state, state.isRefresh());
+            }
+        });
+        mRefreshModel.refreshRequest.start();
     }
 
     @Override
     protected DataBindingConfig getDataBindingConfig() {
 
         return new DataBindingConfig(R.layout.activity_refresh, BR.vm, mRefreshModel)
-                .addBindingParam(BR.click, new ClickProxy())
-//                .addBindingParam(BR.adapter, new ListActivityAdapter(this))
-                .addBindingParam(BR.refreshListener, new Refresh());
-    }
-
-
-    //请求数据
-    void requestData(boolean isRefresh) {
-
-    }
-
-    //开启加载动画
-
-    public void requestRefreshing() {
-        if (!mSrhLayout.isRefreshing()) {
-            mSrhLayout.setRefreshing(true);
-        }
-        requestData(true);
-    }
-
-
-    //初始化下拉
-    public void start(boolean request) {
-//        mSrhLayout.setColorSchemeResources(colorSchemeResId);
-//        mSrhLayout.setOnRefreshListener(this);
-//        initView();
-        if (request) {
-            requestRefreshing();
-        }
-    }
-
-    //请求成功
-    public void requestSuccess(List datas, boolean isRefresh) {
-        if (isRefresh) {
-//            mRefreshAdapter.setNewData(datas);
-            mSrhLayout.setRefreshing(false);
-            mRecyclerView.scrollToPosition(0);
-        } else {
-//            mRefreshAdapter.addData(datas);
-            mSrhLayout.setEnabled(true);
-        }
-
-    }
-
-    public void requestFail(boolean isRefresh, Throwable e) {
-        if (isRefresh) {
-            mSrhLayout.setRefreshing(false);
-//            if (mRefreshAdapter != null) {
-//                mRefreshAdapter.getLoadMoreModule().setEnableLoadMore(true);
-//            }
-        } else {
-//            mRefreshAdapter.getLoadMoreModule().loadMoreFail();
-            mSrhLayout.setEnabled(true);
-        }
-
-
+                .addBindingParam(BR.adapter, adapter)
+                .addBindingParam(BR.refreshListener, new BaseRefreshActivity.Refresh())
+                .addBindingParam(BR.loadMoreListener, new BaseRefreshActivity.LoadMore());
     }
 
 
     @Override
-    public void onLoadMore() {
-        //下拉状态
-        if (mSrhLayout.isRefreshing())
-            mSrhLayout.setRefreshing(false);
-        //禁止下拉
-        mSrhLayout.setEnabled(false);
-        requestData(false);
+    protected void refresh() {
+        mRefreshModel.refreshRequest.start();
     }
 
     @Override
-    protected void initView() {
-
-    }
-
-
-    public class ClickProxy {
-        public void click() {
-
-        }
-    }
-
-    public class Refresh implements SwipeRefreshLayout.OnRefreshListener {
-        @Override
-        public void onRefresh() {
-            //禁止下拉
-
-        }
+    protected void loadMore() {
+        mRefreshModel.refreshRequest.requestData(false);
     }
 
 

@@ -4,13 +4,14 @@ import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnLoadMoreListener;
 
 import java.util.List;
 
 public class RecyclerViewBindingAdapter {
 
-    @BindingAdapter(value = {"adapter", "data", "autoScrollToTopWhenInsert", "autoScrollToBottomWhenInsert"}, requireAll = false)
-    public static void bindList(RecyclerView recyclerView, BaseQuickAdapter adapter, List data,
+    @BindingAdapter(value = {"adapter", "data", "onLoadMoreListener", "isEnableLoadMore", "autoScrollToTopWhenInsert", "autoScrollToBottomWhenInsert"}, requireAll = false)
+    public static void bindList(RecyclerView recyclerView, BaseQuickAdapter adapter, List data, OnLoadMoreListener loadMore, boolean isEnableLoadMore,
                                 boolean autoScrollToTopWhenInsert, boolean autoScrollToBottomWhenInsert) {
         if (recyclerView != null && data != null) {
             if (recyclerView.getAdapter() == null) {
@@ -26,8 +27,12 @@ public class RecyclerViewBindingAdapter {
                         }
                     }
                 });
-            }
 
+                if (loadMore != null) {
+                    adapter.getLoadMoreModule().setOnLoadMoreListener(loadMore);
+                    adapter.getLoadMoreModule().setEnableLoadMore(isEnableLoadMore);
+                }
+            }
             adapter.setList(data);
         }
     }

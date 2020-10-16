@@ -10,16 +10,16 @@
             type="com.was.minejava.ui.refresh.RefreshViewModel" />
 
         <variable
-            name="click"
-            type="com.was.minejava.ui.refresh.RefreshActivity.ClickProxy" />
-
-        <variable
             name="adapter"
-            type="androidx.recyclerview.widget.ListAdapter" />
+            type="com.chad.library.adapter.base.BaseQuickAdapter" />
 
         <variable
             name="refreshListener"
             type="androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener" />
+
+        <variable
+            name="loadMoreListener"
+            type="com.chad.library.adapter.base.listener.OnLoadMoreListener" />
     </data>
 
     <LinearLayout
@@ -28,29 +28,27 @@
         android:orientation="vertical"
         tools:context=".ui.refresh.RefreshActivity">
 
+        <include layout="@layout/common_title" />
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/srhLayout"
+            isEnabledRefresh="@{vm.isEnabledRefresh}"
+            refreshing="@{vm.refreshing}"
             setRefreshListener="@{refreshListener}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/cl_white">
 
-            <TextView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                adapter="@{adapter}"
+                data="@{vm.list}"
+                isEnableLoadMore="@{vm.isEnableLoadMore}"
+                onLoadMoreListener="@{loadMoreListener}"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:text="wowon"
-                textColor="#000000"
-                />
-
-            <!--            <androidx.recyclerview.widget.RecyclerView-->
-            <!--                android:id="@+id/recyclerView"-->
-            <!--                adapter="@{adapter}"-->
-            <!--                submitList="@{vm.list}"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="match_parent"-->
-            <!--                android:clipToPadding="false"-->
-            <!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-            <!--                tools:listitem="@layout/item_list" />-->
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

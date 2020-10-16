@@ -34,6 +34,8 @@ public class NetState<T> {
     private String message = "";
     private T data;
 
+    private boolean isRefresh;
+
     public NetState(T t) {
         state = state_normal;
         success = true;
@@ -90,5 +92,13 @@ public class NetState<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public boolean isRefresh() {
+        return isRefresh;
+    }
+
+    public void setRefresh(boolean refresh) {
+        isRefresh = refresh;
     }
 }

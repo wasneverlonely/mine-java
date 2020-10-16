@@ -17,10 +17,6 @@
             name="adapter"
             type="com.chad.library.adapter.base.BaseQuickAdapter" />
 
-        <variable
-            name="gridLayoutManager"
-            type="androidx.recyclerview.widget.GridLayoutManager" />
-
 
     </data>
 
@@ -38,7 +34,8 @@
             data="@{vm.list}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false" />
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         <!--app:layoutManager="@{gridLayoutManager}"-->
 
         <!--tools:itemCount="5"
