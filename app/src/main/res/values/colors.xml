@@ -17,4 +17,7 @@
     <color name="cl_title_text">@color/cl_white</color>
 
     <color name="cl_red_d0252e">#FFD0252E</color>
+    <color name="colorBlue">#1577FE</color>
+    <color name="colorGray6">#666666</color>
+
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.kunminx.architecture.ui.page.DataBindingConfig;
 import com.was.minejava.base.BaseActivity;
+import com.was.minejava.ui.bottom.BottomNavActivity;
 import com.was.minejava.ui.list.CommonListActivity;
 import com.was.minejava.ui.login.LoginActivity;
 import com.was.minejava.ui.refresh.RefreshActivity;
@@ -53,6 +54,11 @@ public class MainActivity extends BaseActivity {
 
         public void clickTabLayout() {
             Intent intent = new Intent(MainActivity.this, TabLayoutActivity.class);
+            startActivity(intent);
+        }
+
+        public void clickBottomNav() {
+            Intent intent = new Intent(MainActivity.this, BottomNavActivity.class);
             startActivity(intent);
         }
     }
