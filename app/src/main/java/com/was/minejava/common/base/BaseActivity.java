@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.was.minejava.base;
+package com.was.minejava.common.base;
 
 import android.app.Activity;
 import android.os.Bundle;

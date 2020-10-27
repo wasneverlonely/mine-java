@@ -32,7 +32,7 @@ public class ListRequest {
         HttpHelper.toSubscribe(observable, new HttpSubscriber<List<ProvinceBean>>() {
 
             @Override
-            public void sub(NetState<List<ProvinceBean>> netState) {
+            public void onSuccess(NetState<List<ProvinceBean>> netState) {
                 data.postValue(netState);
             }
 

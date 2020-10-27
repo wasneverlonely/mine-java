@@ -8,7 +8,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.chad.library.adapter.base.listener.OnLoadMoreListener;
 import com.was.core.common.http.NetState;
-import com.was.minejava.base.BaseActivity;
+import com.was.minejava.common.base.BaseActivity;
 import com.was.minejava.dapter.BaseRefreshAdapter;
 import com.was.minejava.ui.refresh.BaseRefreshViewModel;
 

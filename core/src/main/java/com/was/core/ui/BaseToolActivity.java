@@ -131,8 +131,8 @@ public abstract class BaseToolActivity extends DataBindingActivity {
     public void showProgressDialog() {
         if (mProgressDialogHandler != null) {
             dismissProgressDialog();
-            mProgressDialogHandler = new ProgressDialogHandler(this);
         }
+        mProgressDialogHandler = new ProgressDialogHandler(this);
         mProgressDialogHandler.obtainMessage(ProgressDialogHandler.SHOW_PROGRESS_DIALOG).sendToTarget();
     }
 

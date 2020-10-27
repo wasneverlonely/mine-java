@@ -1,10 +1,8 @@
 package com.was.minejava.ui.list;
 
 
-import androidx.recyclerview.widget.GridLayoutManager;
-
 import com.kunminx.architecture.ui.page.DataBindingConfig;
-import com.was.minejava.base.BaseActivity;
+import com.was.minejava.common.base.BaseActivity;
 import com.was.core.utils.ToastUtils;
 import com.was.minejava.BR;
 import com.was.minejava.R;

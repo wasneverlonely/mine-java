@@ -23,12 +23,8 @@ public class BottomNavActivity extends AppCompatActivity {
 
         bottomNavBinding = DataBindingUtil.setContentView(this, R.layout.activity_bottom_nav);
 
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_cinema, R.id.navigation_community, R.id.navigation_my)
-                .build();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNavBinding.navView, navController);
     }
 }

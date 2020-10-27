@@ -26,7 +26,7 @@ public abstract class HttpSubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onNext(T t) {
-        sub(new NetState(t));
+        onSuccess(new NetState(t));
     }
 
 
@@ -36,7 +36,7 @@ public abstract class HttpSubscriber<T> extends Subscriber<T> {
     }
 
 
-    public abstract void sub(NetState<T> netState);
+    public abstract void onSuccess(NetState<T> netState);
 
     /**
      * 页面处理异常

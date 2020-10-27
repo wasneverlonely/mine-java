@@ -31,7 +31,7 @@ public class RefreshRequest extends BaseRefershReqeust {
 
         HttpHelper.toSubscribe(observable, new HttpSubscriber<List<SchoolUniformBean>>() {
             @Override
-            public void sub(NetState<List<SchoolUniformBean>> netState) {
+            public void onSuccess(NetState<List<SchoolUniformBean>> netState) {
                 netState.setRefresh(isRefresh);
                 getData().postValue(netState);
             }

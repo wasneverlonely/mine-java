@@ -2,10 +2,9 @@ package com.was.minejava;
 
 
 import android.content.Intent;
-import android.os.Bundle;
 
 import com.kunminx.architecture.ui.page.DataBindingConfig;
-import com.was.minejava.base.BaseActivity;
+import com.was.minejava.common.base.BaseActivity;
 import com.was.minejava.ui.bottom.BottomNavActivity;
 import com.was.minejava.ui.list.CommonListActivity;
 import com.was.minejava.ui.login.LoginActivity;

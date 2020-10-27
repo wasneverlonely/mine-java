@@ -4,7 +4,7 @@ package com.was.minejava.ui.login;
 import android.util.Log;
 
 import com.kunminx.architecture.ui.page.DataBindingConfig;
-import com.was.minejava.base.BaseActivity;
+import com.was.minejava.common.base.BaseActivity;
 import com.was.core.utils.ToastUtils;
 import com.was.core.utils.ValidateUtils;
 import com.was.minejava.BR;
@@ -25,7 +25,7 @@ public class LoginActivity extends BaseActivity {
     protected void initViewModel() {
         mLoginModel = new LoginViewModel();
 
-        mLoginModel.loginRequest.getUser().observe(this, (state) -> {
+        mLoginModel.user.observe(this, (state) -> {
             if (state.isSuccess()) {
                 ToastUtils.showShort("" + state.getData().getId());
             } else {
@@ -54,7 +54,7 @@ public class LoginActivity extends BaseActivity {
                 return;
             }
             showProgressDialog();
-            mLoginModel.loginRequest.login(userName, password);
+            mLoginModel.login(userName, password);
         }
     }
 }
