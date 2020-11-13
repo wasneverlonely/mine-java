@@ -4,7 +4,6 @@ package com.was.minejava.ui.login;
 import android.util.Log;
 
 import androidx.databinding.ObservableField;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -12,7 +11,10 @@ import com.was.core.common.http.HttpSubscriber;
 import com.was.core.common.http.NetState;
 import com.was.core.utils.ToastUtils;
 import com.was.minejava.bean.UserBean;
+import com.was.minejava.data.model.Province;
 import com.was.minejava.data.network.LoginRequest;
+
+import java.util.List;
 
 
 public class LoginViewModel extends ViewModel {

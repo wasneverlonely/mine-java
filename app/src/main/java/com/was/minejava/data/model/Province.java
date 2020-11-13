@@ -1,26 +1,33 @@
-package com.was.minejava.bean;
+package com.was.minejava.data.model;
 
 
+//import androidx.room.ColumnInfo;
+//import androidx.room.Entity;
+//import androidx.room.PrimaryKey;
 
 /**
  * 省份model
  */
-public class ProvinceBean {
 
-    /**
-     * code : 110000
-     * name : 北京市
-     */
+//@Entity(tableName = "province")
+public class Province {
+
+    //    @PrimaryKey(autoGenerate = true)
+    //    private int id;
+
+    //    @ColumnInfo(name = "code")
     private String code;
+
+    //    @ColumnInfo(name = "name")
     private String name;
 
+    //    @ColumnInfo(name = "isCheck")
     private boolean isCheck; // 是否选择
-    private boolean isUnlimited; //是否替补不限
 
-    public ProvinceBean() {
-    }
+    //    @ColumnInfo(name = "isUnlimited")
+    public boolean isUnlimited; //是否替补不限
 
-    public ProvinceBean(String code, String name) {
+    public Province(String code, String name) {
         this.code = code;
         this.code = name;
     }

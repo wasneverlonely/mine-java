@@ -7,6 +7,7 @@ import com.was.core.utils.ToastUtils;
 import com.was.minejava.BR;
 import com.was.minejava.R;
 import com.was.minejava.dapter.CommonListAdapter;
+import com.was.minejava.utils.InjectorUtil;
 
 
 public class CommonListActivity extends BaseActivity {
@@ -22,17 +23,18 @@ public class CommonListActivity extends BaseActivity {
 
     @Override
     protected void initViewModel() {
-        mCommonListModel = new CommonListViewModel();
+        mCommonListModel = new CommonListViewModel(InjectorUtil.getPlaceRepository());
 
-        mCommonListModel.listRequest.getData().observe(this, (state) -> {
-            if (state.isSuccess()) {
-                mCommonListModel.list.postValue(state.getData());
-            } else {
-                ToastUtils.showShort(state.getMessage());
-            }
-        });
+        mCommonListModel.getProvinceList();
+//        mCommonListModel.listRequest.getData().observe(this, (state) -> {
+//            if (state.isSuccess()) {
+//                mCommonListModel.list.postValue(state.getData());
+//            } else {
+//                ToastUtils.showShort(state.getMessage());
+//            }
+//        });
 
-        mCommonListModel.listRequest.lookProvince();
+//        mCommonListModel.listRequest.lookProvince();
     }
 
     @Override
